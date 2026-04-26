@@ -1,0 +1,68 @@
+[
+{
+  "directory": "D:/warehouse_project/build",
+  "command": "C:\\Users\\User\\gcc\\bin\\g++.exe -ID:/warehouse_project/include -g -std=gnu++17 -Wall -Wextra -o CMakeFiles\\warehouse_app.dir\\src\\main.cpp.obj -c D:\\warehouse_project\\src\\main.cpp",
+  "file": "D:\\warehouse_project\\src\\main.cpp",
+  "output": "CMakeFiles\\warehouse_app.dir\\src\\main.cpp.obj"
+},
+{
+  "directory": "D:/warehouse_project/build",
+  "command": "C:\\Users\\User\\gcc\\bin\\g++.exe -ID:/warehouse_project/include -g -std=gnu++17 -Wall -Wextra -o CMakeFiles\\warehouse_app.dir\\src\\core\\Product.cpp.obj -c D:\\warehouse_project\\src\\core\\Product.cpp",
+  "file": "D:\\warehouse_project\\src\\core\\Product.cpp",
+  "output": "CMakeFiles\\warehouse_app.dir\\src\\core\\Product.cpp.obj"
+},
+{
+  "directory": "D:/warehouse_project/build",
+  "command": "C:\\Users\\User\\gcc\\bin\\g++.exe -ID:/warehouse_project/include -g -std=gnu++17 -Wall -Wextra -o CMakeFiles\\warehouse_app.dir\\src\\core\\Stock.cpp.obj -c D:\\warehouse_project\\src\\core\\Stock.cpp",
+  "file": "D:\\warehouse_project\\src\\core\\Stock.cpp",
+  "output": "CMakeFiles\\warehouse_app.dir\\src\\core\\Stock.cpp.obj"
+},
+{
+  "directory": "D:/warehouse_project/build",
+  "command": "C:\\Users\\User\\gcc\\bin\\g++.exe -ID:/warehouse_project/include -g -std=gnu++17 -Wall -Wextra -o CMakeFiles\\warehouse_app.dir\\src\\core\\Supplier.cpp.obj -c D:\\warehouse_project\\src\\core\\Supplier.cpp",
+  "file": "D:\\warehouse_project\\src\\core\\Supplier.cpp",
+  "output": "CMakeFiles\\warehouse_app.dir\\src\\core\\Supplier.cpp.obj"
+},
+{
+  "directory": "D:/warehouse_project/build",
+  "command": "C:\\Users\\User\\gcc\\bin\\g++.exe -ID:/warehouse_project/include -g -std=gnu++17 -Wall -Wextra -o CMakeFiles\\warehouse_app.dir\\src\\core\\User.cpp.obj -c D:\\warehouse_project\\src\\core\\User.cpp",
+  "file": "D:\\warehouse_project\\src\\core\\User.cpp",
+  "output": "CMakeFiles\\warehouse_app.dir\\src\\core\\User.cpp.obj"
+},
+{
+  "directory": "D:/warehouse_project/build",
+  "command": "C:\\Users\\User\\gcc\\bin\\g++.exe -ID:/warehouse_project/include -g -std=gnu++17 -Wall -Wextra -o CMakeFiles\\warehouse_app.dir\\src\\documents\\IncomingOperation.cpp.obj -c D:\\warehouse_project\\src\\documents\\IncomingOperation.cpp",
+  "file": "D:\\warehouse_project\\src\\documents\\IncomingOperation.cpp",
+  "output": "CMakeFiles\\warehouse_app.dir\\src\\documents\\IncomingOperation.cpp.obj"
+},
+{
+  "directory": "D:/warehouse_project/build",
+  "command": "C:\\Users\\User\\gcc\\bin\\g++.exe -ID:/warehouse_project/include -g -std=gnu++17 -Wall -Wextra -o CMakeFiles\\warehouse_app.dir\\src\\documents\\OutgoingOperation.cpp.obj -c D:\\warehouse_project\\src\\documents\\OutgoingOperation.cpp",
+  "file": "D:\\warehouse_project\\src\\documents\\OutgoingOperation.cpp",
+  "output": "CMakeFiles\\warehouse_app.dir\\src\\documents\\OutgoingOperation.cpp.obj"
+},
+{
+  "directory": "D:/warehouse_project/build",
+  "command": "C:\\Users\\User\\gcc\\bin\\g++.exe -ID:/warehouse_project/include -g -std=gnu++17 -Wall -Wextra -o CMakeFiles\\warehouse_app.dir\\src\\services\\Logger.cpp.obj -c D:\\warehouse_project\\src\\services\\Logger.cpp",
+  "file": "D:\\warehouse_project\\src\\services\\Logger.cpp",
+  "output": "CMakeFiles\\warehouse_app.dir\\src\\services\\Logger.cpp.obj"
+},
+{
+  "directory": "D:/warehouse_project/build",
+  "command": "C:\\Users\\User\\gcc\\bin\\g++.exe -ID:/warehouse_project/include -g -std=gnu++17 -Wall -Wextra -o CMakeFiles\\warehouse_app.dir\\src\\services\\OrderCalculator.cpp.obj -c D:\\warehouse_project\\src\\services\\OrderCalculator.cpp",
+  "file": "D:\\warehouse_project\\src\\services\\OrderCalculator.cpp",
+  "output": "CMakeFiles\\warehouse_app.dir\\src\\services\\OrderCalculator.cpp.obj"
+},
+{
+  "directory": "D:/warehouse_project/build",
+  "command": "C:\\Users\\User\\gcc\\bin\\g++.exe -ID:/warehouse_project/include -g -std=gnu++17 -Wall -Wextra -o CMakeFiles\\warehouse_app.dir\\src\\services\\ReportGenerator.cpp.obj -c D:\\warehouse_project\\src\\services\\ReportGenerator.cpp",
+  "file": "D:\\warehouse_project\\src\\services\\ReportGenerator.cpp",
+  "output": "CMakeFiles\\warehouse_app.dir\\src\\services\\ReportGenerator.cpp.obj"
+},
+{
+  "directory": "D:/warehouse_project/build",
+  "command": "C:\\Users\\User\\gcc\\bin\\g++.exe -ID:/warehouse_project/include -g -std=gnu++17 -Wall -Wextra -o CMakeFiles\\warehouse_app.dir\\src\\strategies\\AverageSalesStrategy.cpp.obj -c D:\\warehouse_project\\src\\strategies\\AverageSalesStrategy.cpp",
+  "file": "D:\\warehouse_project\\src\\strategies\\AverageSalesStrategy.cpp",
+  "output": "CMakeFiles\\warehouse_app.dir\\src\\strategies\\AverageSalesStrategy.cpp.obj"
+}
+]
