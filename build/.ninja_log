@@ -1,13 +1,13 @@
 # ninja log v6
 75	281	7989300993754839	CMakeFiles/warehouse_app.dir/src/services/OrderCalculator.cpp.obj	9bf2d4147a617475
 35	641	7989300993334150	CMakeFiles/warehouse_app.dir/src/core/Supplier.cpp.obj	bac09a0613c23e7a
+5	940	7989300993048863	CMakeFiles/warehouse_app.dir/src/main.cpp.obj	95a7a7a6a3d7f912
 17	657	7989300993165416	CMakeFiles/warehouse_app.dir/src/core/Product.cpp.obj	6ae384eea8021cb1
 43	661	7989300993398076	CMakeFiles/warehouse_app.dir/src/core/User.cpp.obj	14dcfd4b1e635b33
+940	3319	7989301002400031	warehouse_app.exe	eb905440e6b2374f
 26	719	7989300993255433	CMakeFiles/warehouse_app.dir/src/core/Stock.cpp.obj	f1255ea145d806d4
 93	804	7989300993922367	CMakeFiles/warehouse_app.dir/src/strategies/AverageSalesStrategy.cpp.obj	3bbfdd8c2a35e041
 86	858	7989300993862133	CMakeFiles/warehouse_app.dir/src/services/ReportGenerator.cpp.obj	81290d82e7e10fd0
 49	926	7989300993481797	CMakeFiles/warehouse_app.dir/src/documents/IncomingOperation.cpp.obj	637be4662feddabc
-66	927	7989300993654250	CMakeFiles/warehouse_app.dir/src/services/Logger.cpp.obj	ec9196cca59dce12
 57	937	7989300993573922	CMakeFiles/warehouse_app.dir/src/documents/OutgoingOperation.cpp.obj	69c0d0f96c8ca35b
-5	940	7989300993048863	CMakeFiles/warehouse_app.dir/src/main.cpp.obj	95a7a7a6a3d7f912
-940	3319	7989301002400031	warehouse_app.exe	eb905440e6b2374f
+66	927	7989300993654250	CMakeFiles/warehouse_app.dir/src/services/Logger.cpp.obj	ec9196cca59dce12

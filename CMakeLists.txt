@@ -24,11 +24,4 @@ add_executable(warehouse_app ${SOURCES})
 
 target_include_directories(warehouse_app PRIVATE include)
 
-# Если SQLite3 и pthread не нужны для демонстрации, можно закомментировать эти строки
-# Для полноценного проекта с базой данных их следует раскомментировать
-# find_package(SQLite3 REQUIRED)
-# find_package(Threads REQUIRED)
-# target_link_libraries(warehouse_app SQLite::SQLite3 Threads::Threads)
-
-# Опциональные флаги предупреждений
 target_compile_options(warehouse_app PRIVATE -Wall -Wextra)
