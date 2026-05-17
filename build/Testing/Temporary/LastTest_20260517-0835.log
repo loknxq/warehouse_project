@@ -1,0 +1,22 @@
+Start testing: May 17 13:30 RTZ 2 (çèìà)
+----------------------------------------------------------
+1/1 Testing: WarehouseTests
+1/1 Test: WarehouseTests
+Command: "D:/warehouse_project/build/WarehouseTests.exe"
+Directory: D:/warehouse_project/build
+"WarehouseTests" start time: May 17 13:30 RTZ 2 (çèìà)
+Output:
+----------------------------------------------------------
+Randomness seeded to: 2450910020
+===============================================================================
+All tests passed (325 assertions in 21 test cases)
+
+<end of output>
+Test time =   0.09 sec
+----------------------------------------------------------
+Test Passed.
+"WarehouseTests" end time: May 17 13:30 RTZ 2 (çèìà)
+"WarehouseTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: May 17 13:30 RTZ 2 (çèìà)

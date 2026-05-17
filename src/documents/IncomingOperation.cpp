@@ -1,83 +1,66 @@
-#include "documents/IncomingOperation.h"
-#include <iostream>
+// warehouse_project/src/documents/IncomingOperation.cpp
+#include "../../include/documents/IncomingOperation.h"
 
-IncomingItem::IncomingItem() {
-    productId = 0;
-    quantity = 0;
-    purchasePrice = 0.0;
+IncomingItem::IncomingItem(std::shared_ptr<Product> p, int q, double price)
+    : product(p), quantity(q), actualPrice(price) {}
+
+IncomingOperation::IncomingOperation() : Document(), supplier(nullptr), invoiceNumber("") {}
+
+IncomingOperation::IncomingOperation(int id, const std::string& docNumber,
+                                      std::shared_ptr<Supplier> supplier,
+                                      const std::string& invoiceNumber)
+    : Document(id, docNumber), supplier(supplier), invoiceNumber(invoiceNumber) {}
+
+void IncomingOperation::addItem(std::shared_ptr<Product> product, int quantity, double price) {
+    items.emplace_back(product, quantity, price);
 }
 
-IncomingItem::IncomingItem(int productId, int quantity, double purchasePrice) {
-    this->productId = productId;
-    this->quantity = quantity;
-    this->purchasePrice = purchasePrice;
-}
-
-int IncomingItem::getProductId() const { return productId; }
-int IncomingItem::getQuantity() const { return quantity; }
-double IncomingItem::getPurchasePrice() const { return purchasePrice; }
-
-IncomingOperation::IncomingOperation() {
-    id = 0;
-    date = "";
-    incomingNumber = "";
-    supplierId = 0;
-}
-
-IncomingOperation::IncomingOperation(int id, std::string date, std::string incomingNumber, int supplierId) {
-    this->id = id;
-    this->date = date;
-    this->incomingNumber = incomingNumber;
-    this->supplierId = supplierId;
-}
-
-void IncomingOperation::addItem(int productId, int quantity, double price) {
-    items.push_back(IncomingItem(productId, quantity, price));
-}
-
-bool IncomingOperation::validate() {
-    if (incomingNumber.empty()) {
-        std::cout << "Ошибка: номер накладной не может быть пустым" << std::endl;
-        return false;
+void IncomingOperation::removeItem(int index) {
+    if (index >= 0 && index < static_cast<int>(items.size())) {
+        items.erase(items.begin() + index);
     }
-    if (supplierId <= 0) {
-        std::cout << "Ошибка: поставщик не выбран" << std::endl;
-        return false;
-    }
-    if (items.empty()) {
-        std::cout << "Ошибка: накладная не содержит товаров" << std::endl;
-        return false;
-    }
+}
+
+void IncomingOperation::clearItems() { items.clear(); }
+
+std::vector<IncomingItem> IncomingOperation::getItems() const { return items; }
+std::shared_ptr<Supplier> IncomingOperation::getSupplier() const { return supplier; }
+std::string IncomingOperation::getInvoiceNumber() const { return invoiceNumber; }
+
+double IncomingOperation::getTotalValue() const {
+    double total = 0;
     for (const auto& item : items) {
-        if (item.getQuantity() <= 0) {
-            std::cout << "Ошибка: количество товара должно быть положительным" << std::endl;
-            return false;
-        }
-        if (item.getPurchasePrice() < 0) {
-            std::cout << "Ошибка: цена не может быть отрицательной" << std::endl;
+        total += item.quantity * item.actualPrice;
+    }
+    return total;
+}
+
+int IncomingOperation::getTotalQuantity() const {
+    int total = 0;
+    for (const auto& item : items) {
+        total += item.quantity;
+    }
+    return total;
+}
+
+bool IncomingOperation::saveToDatabase() const {
+    // Имитация сохранения в БД
+    return validate();
+}
+
+bool IncomingOperation::validate() const {
+    if (id <= 0) return false;
+    if (documentNumber.empty()) return false;
+    if (!supplier) return false;
+    if (invoiceNumber.empty()) return false;
+    if (items.empty()) return false;
+    
+    for (const auto& item : items) {
+        if (!item.product || item.quantity <= 0 || item.actualPrice < 0) {
             return false;
         }
     }
     return true;
 }
 
-void IncomingOperation::save() {
-    std::cout << "Сохранение приходной операции " << incomingNumber << " в базу данных" << std::endl;
-    for (const auto& item : items) {
-        std::cout << "  Товар " << item.getProductId() << " количество " << item.getQuantity() << std::endl;
-    }
-}
-
-std::string IncomingOperation::getType() const {
-    return "IncomingOperation";
-}
-
-int IncomingOperation::getId() const { return id; }
-std::string IncomingOperation::getDate() const { return date; }
-std::string IncomingOperation::getIncomingNumber() const { return incomingNumber; }
-int IncomingOperation::getSupplierId() const { return supplierId; }
-const std::vector<IncomingItem>& IncomingOperation::getItems() const { return items; }
-
-Document* IncomingFactory::createDocument() {
-    return new IncomingOperation();
-}
+std::string IncomingOperation::getType() const { return "INCOMING"; }

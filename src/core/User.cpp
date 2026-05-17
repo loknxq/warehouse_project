@@ -1,31 +1,45 @@
-#include "core/User.h"
+// warehouse_project/src/core/User.cpp
+#include "../../include/core/User.h"
+#include <functional>
 #include <string>
 
-User::User() {
-    id = 0;
-    login = "";
-    passwordHash = "";
-    role = Role::STOREKEEPER;
+std::string User::hashPassword(const std::string& password) {
+    std::hash<std::string> hasher;
+    return std::to_string(hasher(password));
 }
 
-User::User(int id, std::string login, std::string passwordHash, Role role) {
-    this->id = id;
-    this->login = login;
-    this->passwordHash = passwordHash;
-    this->role = role;
-}
+User::User() : id(0), login(""), passwordHash(""), role(UserRole::STOREKEEPER) {}
+
+User::User(int id, const std::string& login, const std::string& password, UserRole role)
+    : id(id), login(login), passwordHash(hashPassword(password)), role(role) {}
 
 int User::getId() const { return id; }
 std::string User::getLogin() const { return login; }
-std::string User::getPasswordHash() const { return passwordHash; }
-Role User::getRole() const { return role; }
+UserRole User::getRole() const { return role; }
 
-void User::setPasswordHash(std::string newHash) {
-    passwordHash = newHash;
+bool User::authenticate(const std::string& password) const {
+    return passwordHash == hashPassword(password);
 }
 
-bool User::authenticate(std::string password) const {
-    // В реальном проекте здесь было бы хэширование пароля и сравнение
-    // Для примера просто сравниваем с пустой строкой
-    return password == passwordHash;
+bool User::hasPermission(UserRole requiredRole) const {
+    // Пользователь имеет доступ, если его роль >= требуемой роли
+    return static_cast<int>(role) >= static_cast<int>(requiredRole);
+}
+
+void User::logout() {
+    // Логика выхода из системы
+}
+
+std::string User::getRoleString() const {
+    switch(role) {
+        case UserRole::STOREKEEPER: return "STOREKEEPER";
+        case UserRole::MANAGER: return "MANAGER";
+        case UserRole::WAREHOUSE_HEAD: return "WAREHOUSE_HEAD";
+        case UserRole::ADMIN: return "ADMIN";
+        default: return "UNKNOWN";
+    }
+}
+
+bool User::operator==(const User& other) const {
+    return id == other.id && login == other.login && role == other.role;
 }

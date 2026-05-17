@@ -1,83 +1,66 @@
-#include "documents/OutgoingOperation.h"
-#include <iostream>
+// warehouse_project/src/documents/OutgoingOperation.cpp
+#include "../../include/documents/OutgoingOperation.h"
 
-OutgoingItem::OutgoingItem() {
-    productId = 0;
-    quantity = 0;
-    sellingPrice = 0.0;
+OutgoingItem::OutgoingItem(std::shared_ptr<Product> p, int q, double price)
+    : product(p), quantity(q), sellingPrice(price) {}
+
+OutgoingOperation::OutgoingOperation() : Document(), customerName(""), customerOrderNumber("") {}
+
+OutgoingOperation::OutgoingOperation(int id, const std::string& docNumber,
+                                      const std::string& customerName,
+                                      const std::string& customerOrderNumber)
+    : Document(id, docNumber), customerName(customerName), 
+      customerOrderNumber(customerOrderNumber) {}
+
+void OutgoingOperation::addItem(std::shared_ptr<Product> product, int quantity, double price) {
+    items.emplace_back(product, quantity, price);
 }
 
-OutgoingItem::OutgoingItem(int productId, int quantity, double sellingPrice) {
-    this->productId = productId;
-    this->quantity = quantity;
-    this->sellingPrice = sellingPrice;
-}
-
-int OutgoingItem::getProductId() const { return productId; }
-int OutgoingItem::getQuantity() const { return quantity; }
-double OutgoingItem::getSellingPrice() const { return sellingPrice; }
-
-OutgoingOperation::OutgoingOperation() {
-    id = 0;
-    date = "";
-    customerOrderNumber = "";
-    customerName = "";
-}
-
-OutgoingOperation::OutgoingOperation(int id, std::string date, std::string customerOrderNumber, std::string customerName) {
-    this->id = id;
-    this->date = date;
-    this->customerOrderNumber = customerOrderNumber;
-    this->customerName = customerName;
-}
-
-void OutgoingOperation::addItem(int productId, int quantity, double price) {
-    items.push_back(OutgoingItem(productId, quantity, price));
-}
-
-bool OutgoingOperation::validate() {
-    if (customerOrderNumber.empty()) {
-        std::cout << "Ошибка: номер заказа клиента не может быть пустым" << std::endl;
-        return false;
+void OutgoingOperation::removeItem(int index) {
+    if (index >= 0 && index < static_cast<int>(items.size())) {
+        items.erase(items.begin() + index);
     }
-    if (customerName.empty()) {
-        std::cout << "Ошибка: имя клиента не может быть пустым" << std::endl;
-        return false;
-    }
-    if (items.empty()) {
-        std::cout << "Ошибка: операция не содержит товаров" << std::endl;
-        return false;
-    }
+}
+
+void OutgoingOperation::clearItems() { items.clear(); }
+
+std::vector<OutgoingItem> OutgoingOperation::getItems() const { return items; }
+std::string OutgoingOperation::getCustomerName() const { return customerName; }
+std::string OutgoingOperation::getCustomerOrderNumber() const { return customerOrderNumber; }
+
+double OutgoingOperation::getTotalValue() const {
+    double total = 0;
     for (const auto& item : items) {
-        if (item.getQuantity() <= 0) {
-            std::cout << "Ошибка: количество товара должно быть положительным" << std::endl;
-            return false;
-        }
-        if (item.getSellingPrice() < 0) {
-            std::cout << "Ошибка: цена не может быть отрицательной" << std::endl;
+        total += item.quantity * item.sellingPrice;
+    }
+    return total;
+}
+
+int OutgoingOperation::getTotalQuantity() const {
+    int total = 0;
+    for (const auto& item : items) {
+        total += item.quantity;
+    }
+    return total;
+}
+
+bool OutgoingOperation::saveToDatabase() const {
+    return validate();
+}
+
+bool OutgoingOperation::validate() const {
+    if (id <= 0) return false;
+    if (documentNumber.empty()) return false;
+    if (customerName.empty()) return false;
+    if (customerOrderNumber.empty()) return false;
+    if (items.empty()) return false;
+    
+    for (const auto& item : items) {
+        if (!item.product || item.quantity <= 0 || item.sellingPrice < 0) {
             return false;
         }
     }
     return true;
 }
 
-void OutgoingOperation::save() {
-    std::cout << "Сохранение расходной операции по заказу " << customerOrderNumber << " в базу данных" << std::endl;
-    for (const auto& item : items) {
-        std::cout << "  Товар " << item.getProductId() << " количество " << item.getQuantity() << std::endl;
-    }
-}
-
-std::string OutgoingOperation::getType() const {
-    return "OutgoingOperation";
-}
-
-int OutgoingOperation::getId() const { return id; }
-std::string OutgoingOperation::getDate() const { return date; }
-std::string OutgoingOperation::getCustomerOrderNumber() const { return customerOrderNumber; }
-std::string OutgoingOperation::getCustomerName() const { return customerName; }
-const std::vector<OutgoingItem>& OutgoingOperation::getItems() const { return items; }
-
-Document* OutgoingFactory::createDocument() {
-    return new OutgoingOperation();
-}
+std::string OutgoingOperation::getType() const { return "OUTGOING"; }

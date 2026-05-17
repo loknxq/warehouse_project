@@ -1,38 +1,36 @@
+// warehouse_project/include/core/Stock.h
 #ifndef STOCK_H
 #define STOCK_H
 
+#include "Product.h"
+#include <memory>
 #include <vector>
-#include "core/Product.h"
-
-class Observer {
-public:
-    virtual void update(int productId, int newQuantity) = 0;
-    virtual ~Observer() {}
-};
+#include <functional>
 
 class Stock {
 private:
-    int productId;
+    std::shared_ptr<Product> product;
     int currentQuantity;
-    int minThreshold;
-    std::vector<Observer*> observers;
+    std::vector<std::function<void(int, int)>> observers;
 
 public:
     Stock();
-    Stock(int productId, int currentQuantity, int minThreshold);
-
-    int getProductId() const;
+    explicit Stock(std::shared_ptr<Product> product, int quantity = 0);
+    
+    std::shared_ptr<Product> getProduct() const;
     int getCurrentQuantity() const;
-    int getMinThreshold() const;
-
+    
+    void addQuantity(int amount);
+    bool removeQuantity(int amount);
     void setQuantity(int newQuantity);
-    void increaseQuantity(int amount);
-    void decreaseQuantity(int amount);
-    bool hasEnough(int requestedAmount) const;
-
-    void attach(Observer* obs);
-    void detach(Observer* obs);
+    
+    bool isBelowMinStock() const;
+    int getRecommendedOrderQuantity(int avgDailySales, int deliveryDays) const;
+    
+    void addObserver(std::function<void(int, int)> observer);
     void notifyObservers();
+    
+    bool operator==(const Stock& other) const;
 };
 
 #endif

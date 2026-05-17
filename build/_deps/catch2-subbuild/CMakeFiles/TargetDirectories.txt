@@ -1,0 +1,3 @@
+D:/warehouse_project/build/_deps/catch2-subbuild/CMakeFiles/catch2-populate.dir
+D:/warehouse_project/build/_deps/catch2-subbuild/CMakeFiles/edit_cache.dir
+D:/warehouse_project/build/_deps/catch2-subbuild/CMakeFiles/rebuild_cache.dir

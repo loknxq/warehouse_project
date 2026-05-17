@@ -1,52 +1,47 @@
+// warehouse_project/include/documents/OutgoingOperation.h
 #ifndef OUTGOING_OPERATION_H
 #define OUTGOING_OPERATION_H
 
-#include "documents/Document.h"
-#include <string>
+#include "Document.h"
+#include "../core/Product.h"
 #include <vector>
+#include <memory>
+#include <string>
 
-class OutgoingItem {
-private:
-    int productId;
+struct OutgoingItem {
+    std::shared_ptr<Product> product;
     int quantity;
     double sellingPrice;
-
-public:
-    OutgoingItem();
-    OutgoingItem(int productId, int quantity, double sellingPrice);
-
-    int getProductId() const;
-    int getQuantity() const;
-    double getSellingPrice() const;
+    
+    OutgoingItem(std::shared_ptr<Product> p, int q, double price);
 };
 
 class OutgoingOperation : public Document {
 private:
-    int id;
-    std::string date;
-    std::string customerOrderNumber;
     std::string customerName;
+    std::string customerOrderNumber;
     std::vector<OutgoingItem> items;
 
 public:
     OutgoingOperation();
-    OutgoingOperation(int id, std::string date, std::string customerOrderNumber, std::string customerName);
-
-    void addItem(int productId, int quantity, double price);
-    void save() override;
-    bool validate() override;
-    std::string getType() const override;
-
-    int getId() const;
-    std::string getDate() const;
-    std::string getCustomerOrderNumber() const;
+    OutgoingOperation(int id, const std::string& docNumber,
+                      const std::string& customerName,
+                      const std::string& customerOrderNumber);
+    
+    void addItem(std::shared_ptr<Product> product, int quantity, double price);
+    void removeItem(int index);
+    void clearItems();
+    
+    std::vector<OutgoingItem> getItems() const;
     std::string getCustomerName() const;
-    const std::vector<OutgoingItem>& getItems() const;
-};
-
-class OutgoingFactory : public DocumentFactory {
-public:
-    Document* createDocument() override;
+    std::string getCustomerOrderNumber() const;
+    
+    double getTotalValue() const;
+    int getTotalQuantity() const;
+    
+    bool saveToDatabase() const override;
+    bool validate() const override;
+    std::string getType() const override;
 };
 
 #endif

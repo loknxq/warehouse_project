@@ -1,7 +1,9 @@
+// warehouse_project/include/core/Product.h
 #ifndef PRODUCT_H
 #define PRODUCT_H
 
 #include <string>
+#include <memory>
 
 class Product {
 private:
@@ -16,9 +18,11 @@ private:
 
 public:
     Product();
-    Product(int id, std::string name, std::string article, std::string category,
-            std::string unit, double purchasePrice, double sellingPrice, int minStock);
-
+    Product(int id, const std::string& name, const std::string& article,
+            const std::string& category, const std::string& unit,
+            double purchasePrice, double sellingPrice, int minStock);
+    
+    // Getters
     int getId() const;
     std::string getName() const;
     std::string getArticle() const;
@@ -27,12 +31,22 @@ public:
     double getPurchasePrice() const;
     double getSellingPrice() const;
     int getMinStock() const;
-
-    void setName(std::string name);
-    void setCategory(std::string category);
-    void setPurchasePrice(double price);
-    void setSellingPrice(double price);
-    void setMinStock(int minStock);
+    
+    // Setters
+    void setId(int newId);
+    void setName(const std::string& newName);
+    void setArticle(const std::string& newArticle);
+    void setCategory(const std::string& newCategory);
+    void setUnit(const std::string& newUnit);
+    void setPurchasePrice(double newPrice);
+    void setSellingPrice(double newPrice);
+    void setMinStock(int newMinStock);
+    
+    // Methods
+    bool isValid() const;
+    double calculateProfitMargin() const;
+    
+    bool operator==(const Product& other) const;
 };
 
 #endif

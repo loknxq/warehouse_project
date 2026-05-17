@@ -1,44 +1,24 @@
+// warehouse_project/include/services/ReportGenerator.h
 #ifndef REPORT_GENERATOR_H
 #define REPORT_GENERATOR_H
 
 #include <string>
+#include <vector>
+#include "../core/Product.h"
+#include "../core/Stock.h"
 
-class Report {
+class ReportGenerator {
 public:
-    virtual ~Report() {}
-    virtual std::string generate() = 0;
-};
-
-class StockReport : public Report {
-public:
-    std::string generate() override;
-};
-
-class MovementReport : public Report {
-public:
-    std::string generate() override;
-};
-
-class ReportDecorator : public Report {
-protected:
-    Report* wrapped;
-public:
-    ReportDecorator(Report* report);
-    virtual ~ReportDecorator();
-};
-
-class FilterDecorator : public ReportDecorator {
-private:
-    std::string category;
-public:
-    FilterDecorator(Report* report, std::string category);
-    std::string generate() override;
-};
-
-class ValueDecorator : public ReportDecorator {
-public:
-    ValueDecorator(Report* report);
-    std::string generate() override;
+    static std::string generateStockReport(const std::vector<Stock>& stocks, 
+                                            const std::string& date);
+    static std::string generateMovementReport(const std::string& startDate,
+                                               const std::string& endDate);
+    static std::string generateTopProductsReport(const std::vector<std::pair<Product, int>>& sales);
+    static std::string generateOrderListReport(const std::vector<std::pair<Product, int>>& toOrder);
+    
+    static std::string addFilter(const std::string& report, const std::string& category);
+    static std::string addValueColumn(const std::string& report, 
+                                       const std::vector<Stock>& stocks);
 };
 
 #endif

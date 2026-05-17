@@ -1,22 +1,23 @@
-#include "services/Logger.h"
+// warehouse_project/src/services/Logger.cpp
+#include "../../include/services/Logger.h"
 #include <iostream>
-#include <chrono>
-#include <ctime>
+#include <sstream>
+
+LogEntry::LogEntry(int uid, const std::string& opType, int oid)
+    : userId(uid), timestamp(std::time(nullptr)), operationType(opType), objectId(oid) {}
+
+std::string LogEntry::toString() const {
+    std::stringstream ss;
+    ss << "[" << timestamp << "] User:" << userId 
+       << " Op:" << operationType << " Obj:" << objectId;
+    return ss.str();
+}
 
 Logger* Logger::instance = nullptr;
 
-Logger::Logger() {
-    logFile.open("warehouse.log", std::ios::app);
-    if (!logFile.is_open()) {
-        std::cerr << "Не удалось открыть файл логов" << std::endl;
-    }
-}
+Logger::Logger() {}
 
-Logger::~Logger() {
-    if (logFile.is_open()) {
-        logFile.close();
-    }
-}
+Logger::~Logger() {}
 
 Logger* Logger::getInstance() {
     if (instance == nullptr) {
@@ -25,17 +26,22 @@ Logger* Logger::getInstance() {
     return instance;
 }
 
-void Logger::log(const std::string& message) {
-    auto now = std::chrono::system_clock::now();
-    auto now_time = std::chrono::system_clock::to_time_t(now);
-    
-    if (logFile.is_open()) {
-        logFile << std::ctime(&now_time) << " - " << message << std::endl;
-    }
-    std::cout << "[LOG] " << message << std::endl;
+void Logger::log(int userId, const std::string& operationType, int objectId) {
+    logs.emplace_back(userId, operationType, objectId);
 }
 
-void Logger::log(const std::string& user, const std::string& action, const std::string& object) {
-    std::string message = "Пользователь " + user + " выполнил действие " + action + " над объектом " + object;
-    log(message);
+std::vector<LogEntry> Logger::getLogs() const { return logs; }
+
+std::vector<LogEntry> Logger::getLogsByUser(int userId) const {
+    std::vector<LogEntry> result;
+    for (const auto& log : logs) {
+        if (log.userId == userId) {
+            result.push_back(log);
+        }
+    }
+    return result;
 }
+
+void Logger::clearLogs() { logs.clear(); }
+
+int Logger::getLogCount() const { return static_cast<int>(logs.size()); }

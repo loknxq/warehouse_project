@@ -1,13 +1,15 @@
+// warehouse_project/include/core/User.h
 #ifndef USER_H
 #define USER_H
 
 #include <string>
+#include <functional>
 
-enum class Role {
-    STOREKEEPER,
-    MANAGER,
-    WAREHOUSE_CHIEF,
-    ADMIN
+enum class UserRole {
+    STOREKEEPER = 0,
+    MANAGER = 1,
+    WAREHOUSE_HEAD = 2,
+    ADMIN = 3
 };
 
 class User {
@@ -15,19 +17,25 @@ private:
     int id;
     std::string login;
     std::string passwordHash;
-    Role role;
+    UserRole role;
+    
+    static std::string hashPassword(const std::string& password);
 
 public:
     User();
-    User(int id, std::string login, std::string passwordHash, Role role);
-
+    User(int id, const std::string& login, const std::string& password, UserRole role);
+    
     int getId() const;
     std::string getLogin() const;
-    std::string getPasswordHash() const;
-    Role getRole() const;
-
-    void setPasswordHash(std::string newHash);
-    bool authenticate(std::string password) const;
+    UserRole getRole() const;
+    
+    bool authenticate(const std::string& password) const;
+    bool hasPermission(UserRole requiredRole) const;
+    void logout();
+    
+    std::string getRoleString() const;
+    
+    bool operator==(const User& other) const;
 };
 
 #endif

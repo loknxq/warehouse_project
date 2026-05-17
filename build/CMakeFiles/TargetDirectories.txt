@@ -1,3 +1,14 @@
-D:/warehouse_project/build/CMakeFiles/warehouse_app.dir
+D:/warehouse_project/build/CMakeFiles/WarehouseLib.dir
+D:/warehouse_project/build/CMakeFiles/WarehouseApp.dir
+D:/warehouse_project/build/CMakeFiles/WarehouseTests.dir
+D:/warehouse_project/build/CMakeFiles/test.dir
 D:/warehouse_project/build/CMakeFiles/edit_cache.dir
 D:/warehouse_project/build/CMakeFiles/rebuild_cache.dir
+D:/warehouse_project/build/_deps/catch2-build/CMakeFiles/test.dir
+D:/warehouse_project/build/_deps/catch2-build/CMakeFiles/edit_cache.dir
+D:/warehouse_project/build/_deps/catch2-build/CMakeFiles/rebuild_cache.dir
+D:/warehouse_project/build/_deps/catch2-build/src/CMakeFiles/Catch2.dir
+D:/warehouse_project/build/_deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir
+D:/warehouse_project/build/_deps/catch2-build/src/CMakeFiles/test.dir
+D:/warehouse_project/build/_deps/catch2-build/src/CMakeFiles/edit_cache.dir
+D:/warehouse_project/build/_deps/catch2-build/src/CMakeFiles/rebuild_cache.dir
