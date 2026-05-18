@@ -1,4 +1,3 @@
-// warehouse_project/include/documents/IncomingOperation.h
 #ifndef INCOMING_OPERATION_H
 #define INCOMING_OPERATION_H
 

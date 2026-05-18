@@ -25,8 +25,8 @@
 	ProcessorClockFrequency="2918"
 	>
 	<Testing>
-		<StartDateTime>May 17 13:30 RTZ 2 ([NON-UTF-8-BYTE-0xE7][NON-UTF-8-BYTE-0xE8][NON-UTF-8-BYTE-0xEC][NON-UTF-8-BYTE-0xE0])</StartDateTime>
-		<StartTestTime>1779013859</StartTestTime>
+		<StartDateTime>May 18 11:00 RTZ 2 ([NON-UTF-8-BYTE-0xE7][NON-UTF-8-BYTE-0xE8][NON-UTF-8-BYTE-0xEC][NON-UTF-8-BYTE-0xE0])</StartDateTime>
+		<StartTestTime>1779091236</StartTestTime>
 		<TestList>
 			<Test>./WarehouseTests</Test>
 		</TestList>
@@ -37,7 +37,7 @@
 			<FullCommandLine>D:\warehouse_project\build\WarehouseTests.exe</FullCommandLine>
 			<Results>
 				<NamedMeasurement type="numeric/double" name="Execution Time">
-					<Value>0.0938505</Value>
+					<Value>0.113537</Value>
 				</NamedMeasurement>
 				<NamedMeasurement type="numeric/double" name="Processors">
 					<Value>1</Value>
@@ -52,12 +52,12 @@
 					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
 				</NamedMeasurement>
 				<Measurement>
-					<Value encoding="base64" compression="gzip">eJwLSsxLyc/NSy0uVihOTU1JTVEoybdSMDIxNbA0NDAwMuCypS7gcszJUShJLS4pVihILC4G2qdhbGSqAGIWlWTm5xUrZOYpGBmClSgkJxanFmtycQEAocot/w==</Value>
+					<Value encoding="base64" compression="gzip">eJwLSsxLyc/NSy0uVihOTU1JTVEoybdSMDY2MjQwMjQzM+OypS7gcszJUShJLS4pVihILC4G2qdhbGSqAGIWlWTm5xUrZOYpGBmClSgkJxanFmtycQEApVAuBg==</Value>
 				</Measurement>
 			</Results>
 		</Test>
-		<EndDateTime>May 17 13:30 RTZ 2 ([NON-UTF-8-BYTE-0xE7][NON-UTF-8-BYTE-0xE8][NON-UTF-8-BYTE-0xEC][NON-UTF-8-BYTE-0xE0])</EndDateTime>
-		<EndTestTime>1779013859</EndTestTime>
+		<EndDateTime>May 18 11:00 RTZ 2 ([NON-UTF-8-BYTE-0xE7][NON-UTF-8-BYTE-0xE8][NON-UTF-8-BYTE-0xEC][NON-UTF-8-BYTE-0xE0])</EndDateTime>
+		<EndTestTime>1779091237</EndTestTime>
 		<ElapsedMinutes>0</ElapsedMinutes>
 	</Testing>
 </Site>

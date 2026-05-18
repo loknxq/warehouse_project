@@ -1,4 +1,3 @@
-// warehouse_project/src/services/ReportGenerator.cpp
 #include "../../include/services/ReportGenerator.h"
 #include <sstream>
 

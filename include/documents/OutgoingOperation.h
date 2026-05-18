@@ -1,4 +1,3 @@
-// warehouse_project/include/documents/OutgoingOperation.h
 #ifndef OUTGOING_OPERATION_H
 #define OUTGOING_OPERATION_H
 

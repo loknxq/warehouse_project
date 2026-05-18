@@ -1,4 +1,3 @@
-// warehouse_project/src/documents/Document.cpp
 #include "../../include/documents/Document.h"
 #include <ctime>
 

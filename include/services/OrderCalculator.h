@@ -1,4 +1,3 @@
-// warehouse_project/include/services/OrderCalculator.h
 #ifndef ORDER_CALCULATOR_H
 #define ORDER_CALCULATOR_H
 

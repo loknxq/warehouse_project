@@ -1,4 +1,3 @@
-// warehouse_project/include/core/Stock.h
 #ifndef STOCK_H
 #define STOCK_H
 

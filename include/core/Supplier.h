@@ -1,4 +1,3 @@
-// warehouse_project/include/core/Supplier.h
 #ifndef SUPPLIER_H
 #define SUPPLIER_H
 

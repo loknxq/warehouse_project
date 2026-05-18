@@ -1,4 +1,3 @@
-// warehouse_project/include/strategies/AverageSalesStrategy.h
 #ifndef AVERAGE_SALES_STRATEGY_H
 #define AVERAGE_SALES_STRATEGY_H
 

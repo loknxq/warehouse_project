@@ -1,4 +1,3 @@
-// warehouse_project/include/services/ReportGenerator.h
 #ifndef REPORT_GENERATOR_H
 #define REPORT_GENERATOR_H
 

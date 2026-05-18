@@ -1,4 +1,3 @@
-// warehouse_project/include/services/Logger.h
 #ifndef LOGGER_H
 #define LOGGER_H
 

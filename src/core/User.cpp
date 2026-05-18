@@ -1,4 +1,3 @@
-// warehouse_project/src/core/User.cpp
 #include "../../include/core/User.h"
 #include <functional>
 #include <string>

@@ -1,4 +1,3 @@
-// warehouse_project/src/documents/IncomingOperation.cpp
 #include "../../include/documents/IncomingOperation.h"
 
 IncomingItem::IncomingItem(std::shared_ptr<Product> p, int q, double price)

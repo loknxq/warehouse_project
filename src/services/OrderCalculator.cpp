@@ -1,4 +1,3 @@
-// warehouse_project/src/services/OrderCalculator.cpp
 #include "../../include/services/OrderCalculator.h"
 
 OrderCalculator::OrderCalculator(std::shared_ptr<RecommendationStrategy> strategy)

@@ -1,4 +1,3 @@
-// warehouse_project/src/core/Stock.cpp
 #include "../../include/core/Stock.h"
 
 Stock::Stock() : product(nullptr), currentQuantity(0) {}

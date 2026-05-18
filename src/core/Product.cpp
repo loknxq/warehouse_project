@@ -1,4 +1,3 @@
-// warehouse_project/src/core/Product.cpp
 #include "../../include/core/Product.h"
 
 Product::Product() : id(0), name(""), article(""), category(""), 

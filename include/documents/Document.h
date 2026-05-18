@@ -1,4 +1,3 @@
-// warehouse_project/include/documents/Document.h
 #ifndef DOCUMENT_H
 #define DOCUMENT_H
 

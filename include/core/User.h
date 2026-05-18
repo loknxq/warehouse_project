@@ -1,4 +1,3 @@
-// warehouse_project/include/core/User.h
 #ifndef USER_H
 #define USER_H
 

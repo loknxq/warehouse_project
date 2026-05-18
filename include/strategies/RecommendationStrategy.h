@@ -1,4 +1,3 @@
-// warehouse_project/include/strategies/RecommendationStrategy.h
 #ifndef RECOMMENDATION_STRATEGY_H
 #define RECOMMENDATION_STRATEGY_H
 

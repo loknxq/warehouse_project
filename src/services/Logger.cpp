@@ -1,4 +1,3 @@
-// warehouse_project/src/services/Logger.cpp
 #include "../../include/services/Logger.h"
 #include <iostream>
 #include <sstream>

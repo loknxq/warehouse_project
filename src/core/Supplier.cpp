@@ -1,4 +1,3 @@
-// warehouse_project/src/core/Supplier.cpp
 #include "../../include/core/Supplier.h"
 
 Supplier::Supplier() : id(0), name(""), contactPerson(""), phone(""), email("") {}
