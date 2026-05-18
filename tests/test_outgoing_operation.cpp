@@ -1,4 +1,3 @@
-// warehouse_project/tests/test_outgoing_operation.cpp
 #include <catch2/catch_test_macros.hpp>
 #include "../include/documents/OutgoingOperation.h"
 #include <memory>

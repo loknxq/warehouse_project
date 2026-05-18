@@ -1,4 +1,3 @@
-// warehouse_project/tests/test_scenarios.cpp
 #include <catch2/catch_test_macros.hpp>
 #include "../include/core/Product.h"
 #include "../include/core/Stock.h"
@@ -14,21 +13,18 @@
 #include <vector>
 #include <iostream>
 
-// Сценарий 1: Полный цикл работы с товаром
+
 TEST_CASE("Scenario 1: Complete product lifecycle", "[Scenario]") {
     
-    // 1. Создание товара
     auto product = std::make_shared<Product>(1, "Test Laptop", "LP001", 
                                                "Electronics", "pcs", 500.0, 750.0, 5);
     REQUIRE(product->isValid() == true);
     REQUIRE(product->calculateProfitMargin() == 50.0);
     
-    // 2. Создание остатка
     Stock stock(product, 0);
     REQUIRE(stock.getCurrentQuantity() == 0);
     REQUIRE(stock.isBelowMinStock() == true);
     
-    // 3. Приход товара
     auto supplier = std::make_shared<Supplier>(1, "Tech Supplier", "Contact Person", "+7-999-123-4567", "tech@supplier.com");
     IncomingOperation incoming(1, "IN-DOC-001", supplier, "INV-001");
     incoming.addItem(product, 20, 480.0);
@@ -38,7 +34,6 @@ TEST_CASE("Scenario 1: Complete product lifecycle", "[Scenario]") {
     REQUIRE(stock.getCurrentQuantity() == 20);
     REQUIRE(stock.isBelowMinStock() == false);
     
-    // 4. Расход товара
     OutgoingOperation outgoing(1, "OUT-DOC-001", "Customer ABC", "ORD-001");
     outgoing.addItem(product, 10, 750.0);
     REQUIRE(outgoing.validate() == true);
@@ -48,12 +43,10 @@ TEST_CASE("Scenario 1: Complete product lifecycle", "[Scenario]") {
     REQUIRE(stock.getCurrentQuantity() == 10);
     REQUIRE(stock.isBelowMinStock() == false);
     
-    // 5. Проверка порога и создание заказа
     stock.removeQuantity(6);
     REQUIRE(stock.getCurrentQuantity() == 4);
     REQUIRE(stock.isBelowMinStock() == true);
     
-    // 6. Расчет рекомендуемого заказа
     OrderCalculator calculator(std::make_shared<AverageSalesStrategy>());
     int recommendedQty = calculator.calculateRecommendedQuantity(
         stock.getCurrentQuantity(), 
@@ -63,14 +56,12 @@ TEST_CASE("Scenario 1: Complete product lifecycle", "[Scenario]") {
     );
     REQUIRE(recommendedQty == 7);
     
-    // 7. Логирование
     Logger* logger = Logger::getInstance();
     logger->clearLogs();
     logger->log(1, "SCENARIO_COMPLETE", product->getId());
     REQUIRE(logger->getLogCount() == 1);
 }
 
-// Сценарий 2: Работа с несколькими товарами
 TEST_CASE("Scenario 2: Multiple products management", "[Scenario]") {
     
     std::vector<Stock> warehouse;
@@ -98,38 +89,30 @@ TEST_CASE("Scenario 2: Multiple products management", "[Scenario]") {
     logger->log(1, "MULTIPLE_PRODUCTS_CHECK", 0);
     REQUIRE(logger->getLogCount() == 1);
 }
-// Замените сценарий 3 в файле test_scenarios.cpp
-
-// Сценарий 3: Аутентификация и права доступа
 TEST_CASE("Scenario 3: Authentication and permissions", "[Scenario]") {
     
     User admin(1, "admin", "admin123", UserRole::ADMIN);
     User storekeeper(2, "store", "store123", UserRole::STOREKEEPER);
     User manager(3, "manager", "manager123", UserRole::MANAGER);
     
-    // Аутентификация
     REQUIRE(admin.authenticate("admin123") == true);
     REQUIRE(storekeeper.authenticate("store123") == true);
     REQUIRE(manager.authenticate("manager123") == true);
     REQUIRE(admin.authenticate("wrong") == false);
     
-    // Права доступа - Storekeeper может только свои функции
     REQUIRE(storekeeper.hasPermission(UserRole::STOREKEEPER) == true);
     REQUIRE(storekeeper.hasPermission(UserRole::MANAGER) == false);
     REQUIRE(storekeeper.hasPermission(UserRole::WAREHOUSE_HEAD) == false);
     
-    // Manager может функции storekeeper и manager
     REQUIRE(manager.hasPermission(UserRole::STOREKEEPER) == true);
     REQUIRE(manager.hasPermission(UserRole::MANAGER) == true);
     REQUIRE(manager.hasPermission(UserRole::WAREHOUSE_HEAD) == false);
     
-    // Admin может всё
     REQUIRE(admin.hasPermission(UserRole::STOREKEEPER) == true);
     REQUIRE(admin.hasPermission(UserRole::MANAGER) == true);
     REQUIRE(admin.hasPermission(UserRole::WAREHOUSE_HEAD) == true);
     REQUIRE(admin.hasPermission(UserRole::ADMIN) == true);
     
-    // Логирование входа
     Logger* logger = Logger::getInstance();
     logger->clearLogs();
     logger->log(admin.getId(), "LOGIN", 0);
@@ -138,7 +121,6 @@ TEST_CASE("Scenario 3: Authentication and permissions", "[Scenario]") {
     REQUIRE(logger->getLogCount() == 2);
 }
 
-// Сценарий 4: Операции прихода и расхода
 TEST_CASE("Scenario 4: Incoming and outgoing operations", "[Scenario]") {
     
     auto product = std::make_shared<Product>(1, "Product X", "X001", "Category", "pcs", 100, 150, 10);
@@ -169,7 +151,6 @@ TEST_CASE("Scenario 4: Incoming and outgoing operations", "[Scenario]") {
     REQUIRE(stock.getCurrentQuantity() == 12);
 }
 
-// Сценарий 5: Наблюдатель и уведомления
 TEST_CASE("Scenario 5: Observer pattern notifications", "[Scenario]") {
     
     auto product = std::make_shared<Product>(1, "Monitor", "MON001", "Electronics", "pcs", 200, 300, 3);
@@ -197,7 +178,6 @@ TEST_CASE("Scenario 5: Observer pattern notifications", "[Scenario]") {
     REQUIRE(stock.isBelowMinStock() == true);
 }
 
-// Сценарий 6: Формирование отчетов
 TEST_CASE("Scenario 6: Report generation", "[Scenario]") {
     
     auto p1 = std::make_shared<Product>(1, "Product A", "A001", "Cat1", "pcs", 100, 150, 5);
@@ -228,7 +208,6 @@ TEST_CASE("Scenario 6: Report generation", "[Scenario]") {
     REQUIRE(orderReport.find("10") != std::string::npos);
 }
 
-// Сценарий 7: Стратегии расчета заказа
 TEST_CASE("Scenario 7: Strategy pattern for order calculation", "[Scenario]") {
     
     auto strategy = std::make_shared<AverageSalesStrategy>();
@@ -261,7 +240,6 @@ TEST_CASE("Scenario 7: Strategy pattern for order calculation", "[Scenario]") {
     REQUIRE(calculator.getCurrentStrategyName() == "Average Sales Strategy (30 days)");
 }
 
-// Сценарий 8: Валидация документов
 TEST_CASE("Scenario 8: Document validation", "[Scenario]") {
     
     auto product = std::make_shared<Product>(1, "Test", "T001", "Cat", "pcs", 100, 150, 5);
@@ -299,7 +277,6 @@ TEST_CASE("Scenario 8: Document validation", "[Scenario]") {
     }
 }
 
-// Сценарий 9: Логирование системы
 TEST_CASE("Scenario 9: System logging", "[Scenario]") {
     
     Logger* logger = Logger::getInstance();
@@ -324,7 +301,6 @@ TEST_CASE("Scenario 9: System logging", "[Scenario]") {
     REQUIRE(logger->getLogCount() == 0);
 }
 
-// Сценарий 10: Комплексный сценарий работы склада
 TEST_CASE("Scenario 10: Complete warehouse workflow", "[Scenario]") {
     
     Logger* logger = Logger::getInstance();
@@ -400,7 +376,6 @@ TEST_CASE("Scenario 10: Complete warehouse workflow", "[Scenario]") {
     REQUIRE(logger->getLogCount() == 4);
 }
 
-// Сценарий 11: Управление поставщиками
 TEST_CASE("Scenario 11: Supplier management", "[Scenario]") {
     
     auto s1 = std::make_shared<Supplier>(1, "Supplier A", "Contact A", "+7-111-111-1111", "a@test.com");

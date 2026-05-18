@@ -1,4 +1,3 @@
-// warehouse_project/tests/test_user.cpp
 #include <catch2/catch_test_macros.hpp>
 #include "../include/core/User.h"
 
@@ -41,25 +40,21 @@ TEST_CASE("User class tests", "[User]") {
         User head(3, "head", "pass", UserRole::WAREHOUSE_HEAD);
         User admin(4, "admin", "pass", UserRole::ADMIN);
         
-        // Storekeeper has only storekeeper permissions
         REQUIRE(storekeeper.hasPermission(UserRole::STOREKEEPER) == true);
         REQUIRE(storekeeper.hasPermission(UserRole::MANAGER) == false);
         REQUIRE(storekeeper.hasPermission(UserRole::WAREHOUSE_HEAD) == false);
         REQUIRE(storekeeper.hasPermission(UserRole::ADMIN) == false);
         
-        // Manager has storekeeper and manager permissions
         REQUIRE(manager.hasPermission(UserRole::STOREKEEPER) == true);
         REQUIRE(manager.hasPermission(UserRole::MANAGER) == true);
         REQUIRE(manager.hasPermission(UserRole::WAREHOUSE_HEAD) == false);
         REQUIRE(manager.hasPermission(UserRole::ADMIN) == false);
         
-        // Warehouse head has storekeeper, manager, and warehouse head permissions
         REQUIRE(head.hasPermission(UserRole::STOREKEEPER) == true);
         REQUIRE(head.hasPermission(UserRole::MANAGER) == true);
         REQUIRE(head.hasPermission(UserRole::WAREHOUSE_HEAD) == true);
         REQUIRE(head.hasPermission(UserRole::ADMIN) == false);
         
-        // Admin has all permissions
         REQUIRE(admin.hasPermission(UserRole::STOREKEEPER) == true);
         REQUIRE(admin.hasPermission(UserRole::MANAGER) == true);
         REQUIRE(admin.hasPermission(UserRole::WAREHOUSE_HEAD) == true);

@@ -49,7 +49,7 @@ TEST_CASE("IncomingOperation tests", "[IncomingOperation]") {
         REQUIRE(items.size() == 1);
         REQUIRE(items[0].product == product2);
         
-        op.removeItem(5); // Out of bounds
+        op.removeItem(5); 
         REQUIRE(items.size() == 1);
     }
     
@@ -98,14 +98,14 @@ TEST_CASE("IncomingOperation tests", "[IncomingOperation]") {
         REQUIRE(op2.validate() == false);
         
         IncomingOperation op3(1, "DOC001", supplier, "INV001");
-        REQUIRE(op3.validate() == false); // No items
+        REQUIRE(op3.validate() == false); 
         
         IncomingOperation op4(1, "DOC001", supplier, "INV001");
-        op4.addItem(product1, -5, 100.0); // Negative quantity
+        op4.addItem(product1, -5, 100.0); 
         REQUIRE(op4.validate() == false);
         
         IncomingOperation op5(1, "DOC001", supplier, "INV001");
-        op5.addItem(product1, 10, -10.0); // Negative price
+        op5.addItem(product1, 10, -10.0); 
         REQUIRE(op5.validate() == false);
     }
     

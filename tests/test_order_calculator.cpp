@@ -1,4 +1,3 @@
-// warehouse_project/tests/test_order_calculator.cpp
 #include <catch2/catch_test_macros.hpp>
 #include "../include/services/OrderCalculator.h"
 #include "../include/strategies/AverageSalesStrategy.h"

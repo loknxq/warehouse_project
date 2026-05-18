@@ -1,4 +1,3 @@
-// warehouse_project/tests/test_stock.cpp
 #include <catch2/catch_test_macros.hpp>
 #include "../include/core/Stock.h"
 #include "../include/core/Product.h"

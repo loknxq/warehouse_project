@@ -1,4 +1,3 @@
-// warehouse_project/tests/test_logger.cpp
 #include <catch2/catch_test_macros.hpp>
 #include "../include/services/Logger.h"
 

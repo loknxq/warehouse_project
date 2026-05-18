@@ -1,4 +1,3 @@
-# warehouse_project/CMakeLists.txt
 cmake_minimum_required(VERSION 3.14)
 project(WarehouseProject VERSION 1.0.0 LANGUAGES CXX)
 
@@ -6,7 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Все исходные файлы проекта
 set(SOURCES
     src/core/Product.cpp
     src/core/Stock.cpp
@@ -21,32 +19,26 @@ set(SOURCES
     src/strategies/AverageSalesStrategy.cpp
 )
 
-# Проверка наличия исходных файлов
 foreach(SOURCE_FILE ${SOURCES})
     if(NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${SOURCE_FILE})
         message(WARNING "Source file not found: ${SOURCE_FILE}")
     endif()
 endforeach()
 
-# Создание статической библиотеки
 add_library(WarehouseLib STATIC ${SOURCES})
 
-# Добавление директорий для поиска заголовков
 target_include_directories(WarehouseLib PUBLIC 
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-# Опционально: создание основного приложения
 add_executable(WarehouseApp src/main.cpp)
 target_link_libraries(WarehouseApp WarehouseLib)
 
-# Настройка тестов
 option(BUILD_TESTS "Build unit tests" ON)
 
 if(BUILD_TESTS)
     enable_testing()
     
-    # Скачивание Catch2
     include(FetchContent)
     FetchContent_Declare(
         Catch2
@@ -55,7 +47,6 @@ if(BUILD_TESTS)
     )
     FetchContent_MakeAvailable(Catch2)
     
-    # Список тестовых файлов
     set(TEST_SOURCES
         tests/test_product.cpp
         tests/test_stock.cpp
@@ -70,7 +61,6 @@ if(BUILD_TESTS)
         tests/test_scenarios.cpp
     )
     
-    # Проверка наличия тестовых файлов
     set(MISSING_TESTS "")
     foreach(TEST_FILE ${TEST_SOURCES})
         if(NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${TEST_FILE})
@@ -83,10 +73,8 @@ if(BUILD_TESTS)
         message(FATAL_ERROR "Missing test files: ${MISSING_TESTS}")
     endif()
     
-    # Создание исполняемого файла тестов
     add_executable(WarehouseTests ${TEST_SOURCES})
     
-    # Подключение библиотек
     target_link_libraries(WarehouseTests 
         WarehouseLib
         Catch2::Catch2WithMain
@@ -96,6 +84,5 @@ if(BUILD_TESTS)
         ${CMAKE_CURRENT_SOURCE_DIR}/include
     )
     
-    # Добавление теста в CTest
     add_test(NAME WarehouseTests COMMAND WarehouseTests)
 endif()

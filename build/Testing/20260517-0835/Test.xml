@@ -25,39 +25,11 @@
 	ProcessorClockFrequency="2918"
 	>
 	<Testing>
-		<StartDateTime>May 18 11:00 RTZ 2 ([NON-UTF-8-BYTE-0xE7][NON-UTF-8-BYTE-0xE8][NON-UTF-8-BYTE-0xEC][NON-UTF-8-BYTE-0xE0])</StartDateTime>
-		<StartTestTime>1779091236</StartTestTime>
-		<TestList>
-			<Test>./WarehouseTests</Test>
-		</TestList>
-		<Test Status="passed">
-			<Name>WarehouseTests</Name>
-			<Path>.</Path>
-			<FullName>./WarehouseTests</FullName>
-			<FullCommandLine>D:\warehouse_project\build\WarehouseTests.exe</FullCommandLine>
-			<Results>
-				<NamedMeasurement type="numeric/double" name="Execution Time">
-					<Value>0.113537</Value>
-				</NamedMeasurement>
-				<NamedMeasurement type="numeric/double" name="Processors">
-					<Value>1</Value>
-				</NamedMeasurement>
-				<NamedMeasurement type="text/string" name="Completion Status">
-					<Value>Completed</Value>
-				</NamedMeasurement>
-				<NamedMeasurement type="text/string" name="Command Line">
-					<Value>D:\warehouse_project\build\WarehouseTests.exe</Value>
-				</NamedMeasurement>
-				<NamedMeasurement type="text/string" name="Environment">
-					<Value>#CTEST_RESOURCE_GROUP_COUNT=</Value>
-				</NamedMeasurement>
-				<Measurement>
-					<Value encoding="base64" compression="gzip">eJwLSsxLyc/NSy0uVihOTU1JTVEoybdSMDY2MjQwMjQzM+OypS7gcszJUShJLS4pVihILC4G2qdhbGSqAGIWlWTm5xUrZOYpGBmClSgkJxanFmtycQEApVAuBg==</Value>
-				</Measurement>
-			</Results>
-		</Test>
-		<EndDateTime>May 18 11:00 RTZ 2 ([NON-UTF-8-BYTE-0xE7][NON-UTF-8-BYTE-0xE8][NON-UTF-8-BYTE-0xEC][NON-UTF-8-BYTE-0xE0])</EndDateTime>
-		<EndTestTime>1779091237</EndTestTime>
+		<StartDateTime>May 18 11:33 RTZ 2 ([NON-UTF-8-BYTE-0xE7][NON-UTF-8-BYTE-0xE8][NON-UTF-8-BYTE-0xEC][NON-UTF-8-BYTE-0xE0])</StartDateTime>
+		<StartTestTime>1779093235</StartTestTime>
+		<TestList/>
+		<EndDateTime>May 18 11:33 RTZ 2 ([NON-UTF-8-BYTE-0xE7][NON-UTF-8-BYTE-0xE8][NON-UTF-8-BYTE-0xEC][NON-UTF-8-BYTE-0xE0])</EndDateTime>
+		<EndTestTime>1779093235</EndTestTime>
 		<ElapsedMinutes>0</ElapsedMinutes>
 	</Testing>
 </Site>

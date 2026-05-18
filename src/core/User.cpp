@@ -21,12 +21,10 @@ bool User::authenticate(const std::string& password) const {
 }
 
 bool User::hasPermission(UserRole requiredRole) const {
-    // Пользователь имеет доступ, если его роль >= требуемой роли
     return static_cast<int>(role) >= static_cast<int>(requiredRole);
 }
 
 void User::logout() {
-    // Логика выхода из системы
 }
 
 std::string User::getRoleString() const {

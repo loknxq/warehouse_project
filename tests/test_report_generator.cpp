@@ -1,4 +1,3 @@
-// warehouse_project/tests/test_report_generator.cpp
 #include <catch2/catch_test_macros.hpp>
 #include "../include/services/ReportGenerator.h"
 #include "../include/core/Stock.h"
